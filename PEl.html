@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Persona: Ecos do Limiar</title>
+<style>
+body {
+  margin: 0;
+  font-family: 'Share Tech Mono', monospace;
+  background: #0b0b0b;
+  color: #ff4d4d;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.container {
+  width: 90%;
+  max-width: 800px;
+  text-align: center;
+  padding: 20px;
+}
+
+h1 {
+  letter-spacing: 2px;
+}
+
+.secretWord {
+  cursor: pointer;
+  text-decoration: underline dotted;
+  color: #c95c5c;
+}
+
+.secretWord:hover {
+  color: #ff0000;
+}
+
+.glitch {
+  animation: glitch 0.3s infinite;
+}
+
+@keyframes glitch {
+  0% { transform: translate(0); }
+  25% { transform: translate(2px, -2px); }
+  50% { transform: translate(-2px, 2px); }
+  75% { transform: translate(2px, 2px); }
+  100% { transform: translate(0); }
+}
+
+.hidden { display: none; }
+
+button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background: transparent;
+  border: 1px solid #ff4d4d;
+  color: #ff4d4d;
+  cursor: pointer;
+}
+button:hover {
+  background: #ff4d4d;
+  color: #000;
+}
+</style>
+</head>
+<body>
+
+<!-- DESCRIÇÃO DA CAMPANHA -->
+<div id="campaign" class="container">
+  <h1>Persona: Ecos do Limiar</h1>
+  <p>
+    Há um momento silencioso entre lembrar e esquecer. Um instante em que uma memória ainda existe, mas já não é segura.
+  </p>
+  <p>
+    É nesse espaço que o <span class="secretWord" data-target="palace">Limiar</span> se forma.
+  </p>
+  <p>
+    Vocês são estudantes comuns, vivendo dias normais, quando começam a perceber <span class="secretWord" data-target="student">falhas</span>: nomes que ninguém lembra, lugares que não aparecem em mapas, pessoas que parecem desaparecer sem deixar vestígios. Algo está errado — e, de alguma forma, isso afeta vocês diretamente.
+  </p>
+  <p>
+    Ao atravessar o Limiar, vocês despertam o poder das <b>Personae</b>, manifestações fragmentadas de suas identidades, nascidas do medo de desaparecer. No Metaverso, esse medo cria <b>Palácios</b>, mundos distorcidos sustentados por ecos de memórias que se recusam a morrer.
+  </p>
+  <p>
+    Cada Palácio é um pedido desesperado para continuar existindo. Cada escolha cobra um preço.
+  </p>
+  <p>
+    Enquanto equilibram a vida escolar, relações pessoais e investigações, vocês precisarão decidir <b>o que vale a pena lembrar</b> — e o que talvez precise ser deixado para trás.
+  </p>
+  <p>
+    Porque no Limiar, uma verdade é absoluta:
+  </p>
+  <p><b>Lembrar é existir. Esquecer é morrer.</b></p>
+</div>
+
+<!-- PALÁCIO 1 -->
+<div id="palace" class="container hidden">
+  <h1>Primeiro Palácio</h1>
+  <p>
+    Um colégio distorcido onde corredores se repetem eternamente. Armários vazios ecoam nomes esquecidos. 
+    O Tirano acredita que só quem é lembrado merece existir. Cada passo pelos corredores altera a memória de quem entra.
+  </p>
+  <button onclick="backToCampaign()">Retornar</button>
+</div>
+
+<!-- ALUNO INVISÍVEL -->
+<div id="student" class="container hidden">
+  <h1 class="glitch">POR QUE ELES</h1>
+  <p class="glitch">
+    PORQUE ELES NÃO ME VEEM<br/>
+    PORQUE ELES NÃO ME OUVEM<br/>
+    PORQUE ELES PORQUE ELES PORQUE
+  </p>
+  <button onclick="backToCampaign()">Retornar</button>
+</div>
+
+<script>
+function hideAll() {
+  document.querySelectorAll('.container').forEach(div => div.classList.add('hidden'));
+}
+
+function openTarget(target) {
+  hideAll();
+  document.getElementById(target).classList.remove('hidden');
+}
+
+function backToCampaign() {
+  hideAll();
+  document.getElementById('campaign').classList.remove('hidden');
+}
+
+const secretWords = document.querySelectorAll('.secretWord');
+secretWords.forEach(word => {
+  word.addEventListener('click', () => {
+    openTarget(word.dataset.target);
+  });
+});
+</script>
+
+</body>
+</html>
